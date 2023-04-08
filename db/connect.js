@@ -1,1 +1,0 @@
-const connectionString = 'mongodb+srv://atsinegifilozof:mertovic@nodejsexpresfrsitof4pro.hwc0bhc.mongodb.net/MERTSEXPRESSJOURNEY?retryWrites=true&w=majority'
