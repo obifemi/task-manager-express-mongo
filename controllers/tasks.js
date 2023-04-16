@@ -35,9 +35,7 @@ const getTask = async (req, res) => {
 
     // res.json({id:req.params.id})
 }
-const updateTask = async (req, res) => {
-    res.send('update task')
-}
+
 const deleteTask = async (req, res) => {
     
     try{
@@ -52,5 +50,20 @@ const deleteTask = async (req, res) => {
     
     
 }
+
+const updateTask = (async (req, res, next) => {
+    const { id: taskID } = req.params
+  
+    const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {
+      new: true,
+      runValidators: true,
+    })
+  
+    if (!task) {
+      return next(createCustomError(`No task with id : ${taskID}`, 404))
+    }
+  
+    res.status(200).json({ task })
+  })
 
 module.exports = { getAllTasks, createTask, getTask, updateTask, deleteTask }
